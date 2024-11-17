@@ -1,3 +1,5 @@
+// src/components/LandingPage.tsx
+
 import { 
   ExternalLink, 
   BarChart, 
@@ -34,7 +36,7 @@ const LandingPage = () => {
               <a href="#features" className="text-sm hover:text-cyan-700">Features</a>
               <a href="#components" className="text-sm hover:text-cyan-700">Components</a>
               <a href="#quickstart" className="text-sm hover:text-cyan-700">Usage</a>
-              <a href="https://github.com" 
+              <a href="https://github.com/michaelbinary/MLUIFramework" 
                 className="inline-flex items-center gap-2 text-sm bg-slate-100 px-4 py-2 rounded-md hover:bg-slate-200"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -151,117 +153,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Component Categories */}
-      <section id="components" className="py-24 bg-gradient-to-br from-slate-800 to-cyan-900 text-white">
-        <div className="max-w-screen-xl mx-auto px-6">
-          <h2 className="text-3xl font-mono font-medium text-center mb-16">Component Categories</h2>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Model Metrics */}
-            <div className="p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <BarChart className="h-6 w-6" />
-                <h3 className="font-mono text-xl">Model Metrics</h3>
-              </div>
-              <ul className="space-y-4 text-slate-200">
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Confusion matrix visualization
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  ROC and PR curves
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Classification reports
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Feature importance plots
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Error analysis dashboards
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Model comparison tools
-                </li>
-              </ul>
-            </div>
-
-            {/* Training Visualization */}
-            <div className="p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <LineChart className="h-6 w-6" />
-                <h3 className="font-mono text-xl">Training Visualization</h3>
-              </div>
-              <ul className="space-y-4 text-slate-200">
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Learning curves
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Loss landscapes
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Gradient flow visualization
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Layer activation maps
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Training progress meters
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Resource usage monitors
-                </li>
-              </ul>
-            </div>
-
-            {/* Dataset Tools */}
-            <div className="p-8 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10">
-              <div className="flex items-center gap-3 mb-6">
-                <Database className="h-6 w-6" />
-                <h3 className="font-mono text-xl">Dataset Tools</h3>
-              </div>
-              <ul className="space-y-4 text-slate-200">
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Dataset statistics and EDA
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Data distribution plots
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Sample viewers
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Annotation tools
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Data quality checks
-                </li>
-                <li className="flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 text-cyan-400" />
-                  Drift detection
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Usage & Quick Start */}
       <section id="quickstart" className="py-24">
         <div className="max-w-screen-xl mx-auto px-6">
@@ -303,7 +194,7 @@ const LandingPage = () => {
 
               <div className="pt-4">
                 <a 
-                  href="https://github.com/your-repo/docs"
+                  href="https://github.com/michaelbinary/MLUIFramework"
                   className="text-sm text-slate-600 hover:text-cyan-700 inline-flex items-center gap-2 group"
                   target="_blank"
                   rel="noopener noreferrer"
