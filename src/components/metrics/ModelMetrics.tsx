@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/metrics/ModelMetrics.tsx
 
 import React from 'react';

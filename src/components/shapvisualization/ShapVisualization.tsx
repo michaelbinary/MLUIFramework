@@ -7,18 +7,14 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  ScatterChart,
-  Scatter,
-  ZAxis
+
 } from 'recharts';
 import {
   BrainCircuit,
-  ArrowRight,
   Download,
   Filter,
   Info,
-  SortDesc,
-  Circle
+
 } from 'lucide-react';
 
 interface ShapValue {

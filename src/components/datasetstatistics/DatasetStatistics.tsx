@@ -7,23 +7,15 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  LineChart,
-  Line,
   PieChart,
   Pie,
   Cell
 } from 'recharts';
 import {
   Database,
-  Hash,
-  Users,
-  FileSpreadsheet,
-  Sigma,
-  BarChart2,
+
   PieChart as PieChartIcon,
   AlertCircle,
-  Download,
-  Filter
 } from 'lucide-react';
 
 interface FeatureStats {

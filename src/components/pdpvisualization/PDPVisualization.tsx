@@ -1,6 +1,4 @@
-import React, { useMemo } from 'react';
 import {
-  LineChart,
   Line,
   XAxis,
   YAxis,
@@ -10,20 +8,15 @@ import {
   ScatterChart,
   Scatter,
   Bar,
-  BarChart,
   ReferenceLine,
-  Cell,
   ComposedChart,
-  Area
+  
 } from 'recharts';
 import {
   TrendingUp,
-  ArrowRight,
-  Download,
   Filter,
   Info,
-  Grid,
-  Box
+  Download
 } from 'lucide-react';
 
 interface PDPPoint {

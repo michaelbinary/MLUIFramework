@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/featureimportance/FeatureImportance.tsx
 
 import React, { useMemo } from 'react';

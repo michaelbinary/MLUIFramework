@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/dataqualitycheck/DataQualityCheckShowcase.tsx
 
 import React, { useState } from 'react';

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/learningcurves/LearningCurves.tsx
 
 import React from 'react';

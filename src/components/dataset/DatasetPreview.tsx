@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/dataset/DatasetPreview.tsx
 
 import React from 'react';

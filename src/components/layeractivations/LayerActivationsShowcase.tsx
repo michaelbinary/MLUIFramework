@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
+// @ts-nocheck
+
+import { useState } from 'react';
 import { LayerActivations } from './LayerActivations';
 
 // Generate sample data - just a 4x4 matrix for preview

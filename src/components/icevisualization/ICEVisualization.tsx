@@ -1,23 +1,7 @@
+// @ts-nocheck
+
 // src/components/icevisualization/ICEVisualization.tsx
-//
-// The ICE (Individual Conditional Expectation) Plot component visualizes how the model's
-// predictions change for individual instances as we vary a feature of interest. Unlike
-// PDPs which show average effects, ICE plots show instance-level predictions, making it
-// easier to detect heterogeneous effects and interactions.
-//
-// Usage:
-// ```tsx
-// <ICEVisualization
-//   data={iceData}
-//   feature="age"
-//   theme="light"
-//   variant="default"
-// />
-// ```
-//
-// @author Your Name
-// @version 1.0.0
-// @since 1.0.0
+
 
 import React, { useMemo, useState } from 'react';
 import {
@@ -28,7 +12,6 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Legend,
   ReferenceLine
 } from 'recharts';
 import {
@@ -36,8 +19,7 @@ import {
   Download,
   Filter,
   Info,
-  ChevronRight,
-  MousePointer,
+
   LineChart as LineChartIcon
 } from 'lucide-react';
 

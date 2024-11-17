@@ -1,10 +1,28 @@
 // src/components/training/TrainingProgressShowcase.tsx
-
 import React, { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { TrainingProgress } from './TrainingProgress';
+import TrainingProgress from './TrainingProgress';
 
-const INITIAL_TRAINING_STATE = {
+interface TrainingState {
+  epoch: number;
+  totalEpochs: number;
+  loss: number;
+  accuracy: number;
+  learningRate: number;
+}
+
+interface ControlsProps {
+  values: Config;
+  onChange: (newValues: Config) => void;
+}
+
+interface Config {
+  theme: 'light' | 'dark';
+  variant: 'default' | 'compact' | 'detailed';
+  animate: boolean;
+}
+
+const INITIAL_TRAINING_STATE: TrainingState = {
   epoch: 0,
   totalEpochs: 100,
   loss: 2.3,
@@ -12,54 +30,53 @@ const INITIAL_TRAINING_STATE = {
   learningRate: 0.001
 };
 
-const Controls = ({ values, onChange }) => {
-  return (
-    <div className="flex flex-col gap-4 p-4 bg-white rounded-lg border border-neutral-200">
-      <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Theme
-        </label>
-        <select
-          value={values.theme}
-          onChange={(e) => onChange({ ...values, theme: e.target.value })}
-          className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
-        >
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
-      
-      <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Variant
-        </label>
-        <select
-          value={values.variant}
-          onChange={(e) => onChange({ ...values, variant: e.target.value })}
-          className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
-        >
-          <option value="default">Default</option>
-          <option value="compact">Compact</option>
-          <option value="detailed">Detailed</option>
-        </select>
-      </div>
-
-      <div>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={values.animate}
-            onChange={(e) => onChange({ ...values, animate: e.target.checked })}
-            className="rounded border-neutral-300"
-          />
-          <span className="text-sm font-medium text-neutral-700">Animate Training</span>
-        </label>
-      </div>
+const Controls: React.FC<ControlsProps> = ({ values, onChange }) => (
+  <div className="flex flex-col gap-4 p-4 bg-white rounded-lg border border-neutral-200">
+    <div>
+      <label className="block text-sm font-medium text-neutral-700 mb-1">Theme</label>
+      <select
+        value={values.theme}
+        onChange={(e) => onChange({ ...values, theme: e.target.value as Config['theme'] })}
+        className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
     </div>
-  );
-};
 
-const CodeBlock = ({ code, onCopy }) => {
+    <div>
+      <label className="block text-sm font-medium text-neutral-700 mb-1">Variant</label>
+      <select
+        value={values.variant}
+        onChange={(e) => onChange({ ...values, variant: e.target.value as Config['variant'] })}
+        className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
+      >
+        <option value="default">Default</option>
+        <option value="compact">Compact</option>
+        <option value="detailed">Detailed</option>
+      </select>
+    </div>
+
+    <div>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={values.animate}
+          onChange={(e) => onChange({ ...values, animate: e.target.checked })}
+          className="rounded border-neutral-300"
+        />
+        <span className="text-sm font-medium text-neutral-700">Animate Training</span>
+      </label>
+    </div>
+  </div>
+);
+
+interface CodeBlockProps {
+  code: string;
+  onCopy: () => void;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ code, onCopy }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -84,14 +101,14 @@ const CodeBlock = ({ code, onCopy }) => {
   );
 };
 
-export const TrainingProgressShowcase = () => {
-  const [activeTab, setActiveTab] = useState('preview');
-  const [config, setConfig] = useState({
+export const TrainingProgressShowcase: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'preview' | 'code'>('preview');
+  const [config, setConfig] = useState<Config>({
     theme: 'light',
     variant: 'default',
     animate: true
   });
-  const [trainingState, setTrainingState] = useState(INITIAL_TRAINING_STATE);
+  const [trainingState, setTrainingState] = useState<TrainingState>(INITIAL_TRAINING_STATE);
 
   // Simulate training progress
   useEffect(() => {
@@ -101,7 +118,7 @@ export const TrainingProgressShowcase = () => {
     }
 
     const interval = setInterval(() => {
-      setTrainingState(prev => {
+      setTrainingState((prev) => {
         if (prev.epoch >= prev.totalEpochs) {
           clearInterval(interval);
           return prev;
@@ -112,7 +129,7 @@ export const TrainingProgressShowcase = () => {
           ...prev,
           epoch: prev.epoch + 1,
           loss: Math.max(0.1, 2.3 * (1 - progress)),
-          accuracy: Math.min(0.99, 0.5 + (0.45 * progress)),
+          accuracy: Math.min(0.99, 0.5 + 0.45 * progress),
           learningRate: 0.001 * Math.pow(0.1, progress * 2)
         };
       });

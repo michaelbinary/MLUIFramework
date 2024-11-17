@@ -1,41 +1,40 @@
-// src/components/roccurve/ROCCurveShowcase.tsx
-
 import React, { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { ROCCurve } from './ROCCurve';
 
-// Generate sample ROC curve data
-const generateROCData = (quality: 'good' | 'average' | 'poor') => {
+type Quality = 'good' | 'average' | 'poor';
+type Theme = 'light' | 'dark';
+type Variant = 'default' | 'compact' | 'detailed';
+type ColorScale = 'blue' | 'green' | 'purple';
+
+const generateROCData = (quality: Quality) => {
   const points = [];
   const numPoints = 100;
-  
+
   for (let i = 0; i <= numPoints; i++) {
     const x = i / numPoints;
     let y;
-    
+
     switch (quality) {
       case 'good':
-        // Generates a curve with high AUC
         y = Math.pow(x, 3);
         break;
       case 'average':
-        // Generates a curve with moderate AUC
         y = Math.pow(x, 1.5);
         break;
       case 'poor':
-        // Generates a curve closer to random
         y = x + (Math.random() * 0.1 - 0.05);
         break;
     }
-    
-    y = Math.max(0, Math.min(1, y)); // Clamp between 0 and 1
+
+    y = Math.max(0, Math.min(1, y));
     points.push({
       fpr: x,
       tpr: y,
       threshold: 1 - (i / numPoints)
     });
   }
-  
+
   return points;
 };
 
@@ -45,30 +44,28 @@ const SAMPLE_DATA = {
   poor: generateROCData('poor')
 };
 
-const Controls = ({ values, onChange }) => {
+const Controls = ({ values, onChange }: { values: any, onChange: any }) => {
   return (
     <div className="flex flex-col gap-4 p-4 bg-white rounded-lg border border-neutral-200">
+      {/* Theme Control */}
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Theme
-        </label>
+        <label className="block text-sm font-medium text-neutral-700 mb-1">Theme</label>
         <select
           value={values.theme}
-          onChange={(e) => onChange({ ...values, theme: e.target.value })}
+          onChange={(e) => onChange({ ...values, theme: e.target.value as Theme })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
       </div>
-      
+
+      {/* Variant Control */}
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Variant
-        </label>
+        <label className="block text-sm font-medium text-neutral-700 mb-1">Variant</label>
         <select
           value={values.variant}
-          onChange={(e) => onChange({ ...values, variant: e.target.value })}
+          onChange={(e) => onChange({ ...values, variant: e.target.value as Variant })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="default">Default</option>
@@ -77,10 +74,9 @@ const Controls = ({ values, onChange }) => {
         </select>
       </div>
 
+      {/* Sample Data Quality Control */}
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Sample Data
-        </label>
+        <label className="block text-sm font-medium text-neutral-700 mb-1">Sample Data</label>
         <select
           value={values.dataQuality}
           onChange={(e) => onChange({ ...values, dataQuality: e.target.value })}
@@ -92,10 +88,9 @@ const Controls = ({ values, onChange }) => {
         </select>
       </div>
 
+      {/* Color Scale Control */}
       <div>
-        <label className="block text-sm font-medium text-neutral-700 mb-1">
-          Color Scale
-        </label>
+        <label className="block text-sm font-medium text-neutral-700 mb-1">Color Scale</label>
         <select
           value={values.colorScale}
           onChange={(e) => onChange({ ...values, colorScale: e.target.value })}
@@ -106,47 +101,12 @@ const Controls = ({ values, onChange }) => {
           <option value="purple">Purple</option>
         </select>
       </div>
-
-      <div>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={values.showGrid}
-            onChange={(e) => onChange({ ...values, showGrid: e.target.checked })}
-            className="rounded border-neutral-300"
-          />
-          <span className="text-sm font-medium text-neutral-700">Show Grid</span>
-        </label>
-      </div>
-
-      <div>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={values.showThresholds}
-            onChange={(e) => onChange({ ...values, showThresholds: e.target.checked })}
-            className="rounded border-neutral-300"
-          />
-          <span className="text-sm font-medium text-neutral-700">Show Thresholds</span>
-        </label>
-      </div>
-
-      <div>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={values.showArea}
-            onChange={(e) => onChange({ ...values, showArea: e.target.checked })}
-            className="rounded border-neutral-300"
-          />
-          <span className="text-sm font-medium text-neutral-700">Show Area</span>
-        </label>
-      </div>
     </div>
   );
 };
 
-const CodeBlock = ({ code, onCopy }) => {
+// CodeBlock component for displaying and copying code
+const CodeBlock = ({ code, onCopy }: { code: string, onCopy: () => void }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -162,8 +122,7 @@ const CodeBlock = ({ code, onCopy }) => {
       </pre>
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 p-2 rounded-md bg-neutral-800 hover:bg-neutral-700 
-                 text-neutral-400 hover:text-neutral-200 transition-colors"
+        className="absolute top-2 right-2 p-2 rounded-md bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-neutral-200 transition-colors"
       >
         {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </button>
@@ -171,68 +130,33 @@ const CodeBlock = ({ code, onCopy }) => {
   );
 };
 
+// Function to generate a code snippet based on current config
+const generateCode = () => {
+  return `<ROCCurve
+  data={SAMPLE_DATA}
+  theme="light"
+  variant="default"
+  colorScale="blue"
+  showGrid={true}
+  showThresholds={false}
+  showArea={false}
+/>`;
+};
+
 export const ROCCurveShowcase = () => {
   const [activeTab, setActiveTab] = useState('preview');
   const [config, setConfig] = useState({
-    theme: 'light',
-    variant: 'default',
+    theme: 'light' as Theme,
+    variant: 'default' as Variant,
     dataQuality: 'good',
     colorScale: 'blue',
-    showGrid: true,
-    showThresholds: false,
-    showArea: false
   });
-
-  const generateCode = () => {
-    const props = [];
-
-    if (config.theme !== 'light') props.push(`theme="${config.theme}"`);
-    if (config.variant !== 'default') props.push(`variant="${config.variant}"`);
-    if (config.colorScale !== 'blue') props.push(`colorScale="${config.colorScale}"`);
-    if (!config.showGrid) props.push('showGrid={false}');
-    if (config.showThresholds) props.push('showThresholds={true}');
-    if (config.showArea) props.push('showArea={true}');
-
-    return `<ROCCurve
-  data={[
-    { fpr: 0, tpr: 0, threshold: 1 },
-    { fpr: 0.1, tpr: 0.4, threshold: 0.8 },
-    { fpr: 0.3, tpr: 0.7, threshold: 0.6 },
-    // ... more data points
-    { fpr: 1, tpr: 1, threshold: 0 }
-  ]}${props.length > 0 ? '\n  ' + props.join('\n  ') : ''}
-/>`;
-  };
 
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="bg-white rounded-xl shadow-sm border border-neutral-200">
         <div className="border-b border-neutral-200 p-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-neutral-900">
-              ROC Curve Component
-            </h2>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setActiveTab('preview')}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors
-                  ${activeTab === 'preview' 
-                    ? 'bg-neutral-900 text-white' 
-                    : 'text-neutral-600 hover:text-neutral-900'}`}
-              >
-                Preview
-              </button>
-              <button
-                onClick={() => setActiveTab('code')}
-                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors
-                  ${activeTab === 'code' 
-                    ? 'bg-neutral-900 text-white' 
-                    : 'text-neutral-600 hover:text-neutral-900'}`}
-              >
-                Code
-              </button>
-            </div>
-          </div>
+          <h2 className="text-lg font-semibold text-neutral-900">ROC Curve Component</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6">
@@ -247,10 +171,7 @@ export const ROCCurveShowcase = () => {
                   data={SAMPLE_DATA[config.dataQuality as keyof typeof SAMPLE_DATA]}
                   theme={config.theme}
                   variant={config.variant}
-                  colorScale={config.colorScale as 'blue' | 'green' | 'purple'}
-                  showGrid={config.showGrid}
-                  showThresholds={config.showThresholds}
-                  showArea={config.showArea}
+                  colorScale={config.colorScale as ColorScale}
                 />
               </div>
             ) : (

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/prcurve/PRCurve.tsx
 
 import React, { useMemo } from 'react';

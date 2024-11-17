@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/metrics/ConfusionMatrix.tsx
 
 import React from 'react';

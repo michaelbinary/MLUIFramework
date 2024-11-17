@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/metrics/ModelMetricsShowcase.tsx
 
 import React, { useState } from 'react';

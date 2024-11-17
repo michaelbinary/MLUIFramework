@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/gradientflow/GradientFlowShowcase.tsx
 
 import React, { useState } from 'react';

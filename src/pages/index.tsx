@@ -1,9 +1,7 @@
-import React from 'react';
 import { 
   ExternalLink, 
   BarChart, 
   Brain,
-  Layers,
   Code,
   Database,
   GitFork,
@@ -17,7 +15,7 @@ import {
 
 // Quick demo components
 import { ModelMetrics } from '../components/metrics/ModelMetrics';
-import { TrainingProgress } from '../components/training/TrainingProgress';
+import TrainingProgress from '../components/training/TrainingProgress';
 
 const LandingPage = () => {
   return (

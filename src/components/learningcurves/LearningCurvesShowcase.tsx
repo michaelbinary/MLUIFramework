@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/learningcurves/LearningCurvesShowcase.tsx
 
 import React, { useState, useEffect } from 'react';

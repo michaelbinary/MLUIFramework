@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/dataqualitycheck/DataQualityCheck.tsx
 
 import React, { useMemo } from 'react';

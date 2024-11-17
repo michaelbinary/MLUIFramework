@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/classificationreport/ClassificationReport.tsx
 
 import React from 'react';

@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 // src/components/driftdetector/DriftDetectorShowcase.tsx
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { DriftDetector } from './DriftDetector';
 

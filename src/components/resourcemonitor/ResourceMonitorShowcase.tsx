@@ -111,7 +111,7 @@ const Controls = ({ values, onChange }) => {
         </label>
         <select
           value={values.theme}
-          onChange={(e) => onChange({ ...values, theme: e.target.value })}
+          onChange={(e) => onChange({ ...values, theme: e.target.value as 'light' | 'dark' })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="light">Light</option>
@@ -125,7 +125,7 @@ const Controls = ({ values, onChange }) => {
         </label>
         <select
           value={values.variant}
-          onChange={(e) => onChange({ ...values, variant: e.target.value })}
+          onChange={(e) => onChange({ ...values, variant: e.target.value as 'default' | 'compact' | 'detailed' })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="default">Default</option>
@@ -140,7 +140,7 @@ const Controls = ({ values, onChange }) => {
         </label>
         <select
           value={values.pattern}
-          onChange={(e) => onChange({ ...values, pattern: e.target.value })}
+          onChange={(e) => onChange({ ...values, pattern: e.target.value as 'normal' | 'gpu-bottleneck' | 'cpu-bottleneck' | 'memory-leak' })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="normal">Normal Training</option>
@@ -156,7 +156,7 @@ const Controls = ({ values, onChange }) => {
         </label>
         <select
           value={values.colorScale}
-          onChange={(e) => onChange({ ...values, colorScale: e.target.value })}
+          onChange={(e) => onChange({ ...values, colorScale: e.target.value as 'blue' | 'green' | 'purple' })}
           className="w-full p-2 border border-neutral-200 rounded-md bg-white text-neutral-700"
         >
           <option value="blue">Blue</option>
@@ -235,28 +235,36 @@ const CodeBlock = ({ code, onCopy }) => {
 
 export const ResourceMonitorShowcase = () => {
   const [activeTab, setActiveTab] = useState('preview');
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<{
+    theme: 'light' | 'dark';
+    variant: 'default' | 'compact' | 'detailed';
+    pattern: 'normal' | 'gpu-bottleneck' | 'cpu-bottleneck' | 'memory-leak';
+    colorScale: 'blue' | 'green' | 'purple';
+    timeWindow: number;
+    showBottlenecks: boolean;
+    realTime: boolean;
+  }>({
     theme: 'light',
     variant: 'default',
     pattern: 'normal',
     colorScale: 'blue',
     timeWindow: 5,
     showBottlenecks: true,
-    realTime: false
+    realTime: false,
   });
 
-  const [data, setData] = useState(generateResourceData(config.pattern as any));
+  const [data, setData] = useState(generateResourceData(config.pattern));
 
   // Simulate real-time updates
   useEffect(() => {
     if (!config.realTime) {
-      setData(generateResourceData(config.pattern as any));
+      setData(generateResourceData(config.pattern));
       return;
     }
 
     const interval = setInterval(() => {
       setData(current => {
-        const newPoint = generateResourceData(config.pattern as any, 1)[0];
+        const newPoint = generateResourceData(config.pattern, 1)[0];
         return [...current.slice(1), newPoint];
       });
     }, 1000);
@@ -344,7 +352,7 @@ export const ResourceMonitorShowcase = () => {
                   data={data}
                   theme={config.theme}
                   variant={config.variant}
-                  colorScale={config.colorScale as 'blue' | 'green' | 'purple'}
+                  colorScale={config.colorScale}
                   timeWindow={config.timeWindow}
                   showBottlenecks={config.showBottlenecks}
                   realTime={config.realTime}

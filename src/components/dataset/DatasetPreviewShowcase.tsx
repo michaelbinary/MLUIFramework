@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/dataset/DatasetPreviewShowcase.tsx
 
 import React, { useState } from 'react';

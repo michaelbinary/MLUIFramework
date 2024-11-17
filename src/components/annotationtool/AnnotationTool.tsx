@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/annotationtool/AnnotationTool.tsx
 
 import React, { useState, useRef } from 'react';

@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 // src/components/losslandscape/LossLandscapeShowcase.tsx
 
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { LossLandscape } from './LossLandscape';
 

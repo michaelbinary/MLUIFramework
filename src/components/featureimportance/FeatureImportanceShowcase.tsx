@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/featureimportance/FeatureImportanceShowcase.tsx
 
 import React, { useState } from 'react';

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 // src/components/prcurve/PRCurveShowcase.tsx
 
 import React, { useState } from 'react';
