@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .ticker-card {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .ticker-card-light {
+    @apply bg-ticker-light border-ticker-light text-ticker-light 
+           hover:bg-ticker-hover-light shadow-sm hover:shadow-md;
+  }
+  
+  .ticker-card-dark {
+    @apply bg-ticker-dark border-ticker-dark text-ticker-dark 
+           hover:bg-ticker-hover-dark shadow-sm hover:shadow-md;
+  }
+  
+  .price-up {
+    @apply text-up font-medium;
+  }
+  
+  .price-down {
+    @apply text-down font-medium;
+  }
+  
+  .price-neutral {
+    @apply text-neutral-600 font-medium;
+  }
+}
+
+/* Simplified scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d4d4d4;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a3a3a3;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: #262626;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #404040;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #525252;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll linear infinite;
+}
+
+.animation-paused {
+  animation-play-state: paused;
+}
